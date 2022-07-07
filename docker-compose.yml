@@ -1,0 +1,18 @@
+version: '3'
+services:
+  client:
+    container_name: client
+    image: client:latest
+    command: python3 main.py
+    entrypoint: ../docker-entrypoint.sh
+    environment:
+      - FAKETIME_DONT_RESET=1
+      - LD_PRELOAD=/usr/local/lib/faketime/libfaketime.so.1
+      - PYTHONUNBUFFERED=1
+    env_file:
+      - config
+    volumes:
+      - ./src:/src
+      - ./safe_storage:/safe_storage
+    cap_add:
+      - NET_ADMIN
