@@ -18,8 +18,13 @@ RUN crontab /etc/cron.d/timesync
 RUN apk add --no-cache autoconf
 
 # Install client app's Python modules and their dependencies
-RUN apk add gcc g++ libffi-dev musl-dev zlib-dev linux-headers make bind-tools \
-    iproute2 python3-dev && cd scamper && autoreconf && ./configure && make && make install
+RUN apk add gcc g++ libffi-dev musl-dev zlib-dev linux-headers make bind-tools automake\
+    iproute2 python3-dev #&& cd scamper && ./configure && make && make install
+RUN cd scamper 
+#RUN autoreconf 
+#RUN ./configure 
+#RUN make 
+#RUN make install
 
 RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python
 RUN python3 -m ensurepip

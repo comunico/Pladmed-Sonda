@@ -49,7 +49,7 @@ def config_connection(client):
 
 
 def connect_to_server(client):
-    backend_url = 'wss://' + \
+    backend_url = 'ws://' + \
         os.getenv('BACKEND_FQDNS') + "/"
 
     print("Connecting to: ", backend_url)
